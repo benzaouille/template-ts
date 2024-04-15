@@ -1,10 +1,11 @@
 import { Watch } from './class/Watch.ts'
+import { WatchFactory } from './class/WatchFactory.ts'
 
 let watch_container : Watch[] = [];
 
 
 // Function to create a new watch instance and add it to the DOM
-function createNewWatch() {
+/*function createNewWatch() {
     const selectElementGMT = document.getElementById('timezone-select')  as HTMLSelectElement;;
     const container    = document.getElementById('watches-container');
     const watchElement = document.createElement('div');
@@ -22,13 +23,13 @@ function createNewWatch() {
     `;
     container.appendChild(watchElement);
     watch_container.push(new Watch(watchElement, parseInt(selectElementGMT.value, 10)));
-}
+}*/
 
 
 document.addEventListener("DOMContentLoaded", () => {
     const addWatchButton = document.getElementById('addWatchButton') as HTMLButtonElement;
     addWatchButton?.addEventListener('click', () => {
-        createNewWatch();
+      watch_container.push(WatchFactory.createWatch());
     });
 });
 
