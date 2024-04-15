@@ -1,20 +1,29 @@
 import { Watch } from './class/Watch.ts'
 
-let w = new Watch;
+let watch_container : Watch[] = [];
+
+// Function to create a new watch instance and add it to the DOM
+function createNewWatch() {
+    const container = document.getElementById('watches-container');
+    const watchElement = document.createElement('div');
+    watchElement.className = 'watch';
+    watchElement.innerHTML = `
+        <span class="watch-screen">
+            <span class="time"></span>
+            <span class="seconds"></span>
+        </span>
+        <button class="button-watch button-mode"></button>
+        <button class="button-watch button-increase"></button>
+        <button class="button-watch button-light"></button>
+    `;
+    container.appendChild(watchElement);
+    watch_container.push(new Watch(watchElement));
+}
+
 
 document.addEventListener("DOMContentLoaded", () => {
-    const changeColorButton = document.getElementById('changeColorButton') as HTMLButtonElement;
-    changeColorButton?.addEventListener('click', () => {
-        w.turn_on_off_light();
-    });
-
-    const changeModeButton = document.getElementById('changeModeButton') as HTMLButtonElement;
-    changeModeButton?.addEventListener('click', () => {
-        w.setMode();
-    });
-
-    const changeIncreaseButton = document.getElementById('changeIncreaseButton') as HTMLButtonElement;
-    changeIncreaseButton?.addEventListener('click', () => {
-        w.updateTime();
+    const addWatchButton = document.getElementById('addWatchButton') as HTMLButtonElement;
+    addWatchButton?.addEventListener('click', () => {
+        createNewWatch();
     });
 });

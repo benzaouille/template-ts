@@ -20,7 +20,7 @@ body {
     font-size: 34px;
 }
 
-.content {
+.watches-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,7 +55,7 @@ body {
     font-size: 1em;
 }
 
-.button {
+.button-watch {
     position: absolute;
     width: 30px;
     height: 10px;
@@ -78,4 +78,13 @@ body {
   transform: translateX(-70px)
              translateY(70px)
              rotate(45deg);
+}
+
+.buttonAddWatch{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  margin: 20px 0;
+  font-size: 34px;
 }
