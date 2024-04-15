@@ -80,11 +80,23 @@ body {
              rotate(45deg);
 }
 
-.buttonAddWatch{
+.button-reset {
+  transform: translateX(-70px)
+             translateY(-70px)
+             rotate(-45deg);
+}
+
+.button-am-pm {
+  transform: translateY(-100px)
+}
+
+.footer{
   position: absolute;
+  display: flex;
+  justify-content: space-between;
+  width: 32%;
   bottom: 0;
-  width: 100%;
-  text-align: center;
   margin: 20px 0;
-  font-size: 34px;
+  font-size: 20px;
+  text-align: center;
 }
