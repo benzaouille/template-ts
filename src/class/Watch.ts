@@ -51,7 +51,6 @@ export class Watch {
       this.edit_hour = false;
       this.edit_minute = false;
     }
-    console.log(`${this.edit_hour} and ${this.edit_minute}`);
   }
 
   updateTime() : void{
@@ -65,7 +64,6 @@ export class Watch {
 
   turn_on_off_light() : void {
     this.light_on = !this.light_on;
-    console.log(this.light_on);
     const watch_screen = document.getElementById('watch-id') as HTMLSpanElement;
     if(this.light_on){
       watch_screen.style.backgroundColor = 'red';
