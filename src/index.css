@@ -1,3 +1,82 @@
-h1 {
-    color: red;
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    font-family: 'Arial', sans-serif;
+}
+
+.title {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.title h1 {
+    margin: 20px 0;
+    font-size: 34px;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+.watch {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    background-color: #007bff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.watch-screen {
+    background-color: white;
+    border-radius: 20px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.time {
+    font-size: 2em;
+    margin-right: 5px;
+}
+
+.seconds {
+    font-size: 1em;
+    color: limegreen;
+}
+
+.button {
+    position: absolute;
+    width: 30px;
+    height: 10px;
+    background-color: cyan;
+}
+
+.button-mode {
+    transform: translateX(70px)
+               translateY(-70px)
+               rotate(45deg);
+}
+
+.button-increase {
+  transform: translateX(70px)
+             translateY(70px)
+             rotate(-45deg);
+}
+
+.button-light {
+  transform: translateX(-70px)
+             translateY(70px)
+             rotate(45deg);
 }
