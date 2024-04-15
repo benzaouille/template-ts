@@ -6,7 +6,7 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
     <!-- support for mobile touch devices -->
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="../src/index.css">
 </head>
 <body>
     <div class="title">
@@ -15,13 +15,13 @@
 
     <div class="content">
       <div class="watch">
-        <div class="watch-screen">
-            <span class="time">00:00</span>
-            <span class="seconds">13</span>
-        </div>
-        <button class="button button-mode"></button>
-        <button class="button button-increase"></button>
-        <button class="button button-light"></button>
+        <span id="watch-id" class="watch-screen">
+            <span id="time-id" class="time"></span>
+            <span id="second-id" class="seconds"></span>
+        </span>
+        <button id="changeModeButton" class="button button-mode"></button>
+        <button id="changeIncreaseButton" class="button button-increase"></button>
+        <button id="changeColorButton" class="button button-light"></button>
       </div>
     </div>
 </body>
