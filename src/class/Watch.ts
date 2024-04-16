@@ -1,24 +1,17 @@
 
+/*Quick implementation of the digital watch (refer to Part B for a better one)*/
 export class Watch {
 
-  private light_on : boolean;
-  private edit_hour : boolean;
-  private edit_minute : boolean;
-  private intervalId: number;
-  private offset_hour : number;
-  private offset_minute : number;
-  private mod_hour : number;
-  private mod_minute : number;
+  private light_on : boolean    = false;
+  private edit_hour : boolean   = false;
+  private edit_minute : boolean = false;
+  private intervalId: number = 0;
+  private offset_hour : number = 0;
+  private offset_minute : number = 0;
+  private mod_hour : number = 24;
+  private mod_minute : number = 60;
 
-  constructor(mod_hour : number = 24, mod_minute : number = 60){
-    this.offset_hour   = 0;
-    this.offset_minute = 0;
-    this.light_on      = false;
-    this.edit_hour     = false;
-    this.edit_minute   = false;
-    this.mod_hour      = mod_hour;
-    this.mod_minute    = mod_minute;
-
+  constructor(){
     // Immediately display time and update every seconds
     this.displayTime();
     this.intervalId = window.setInterval(() => this.displayTime(), 1000);
