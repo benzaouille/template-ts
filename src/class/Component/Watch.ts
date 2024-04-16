@@ -14,8 +14,7 @@ class Watch {
   protected intervalId : number;
 
   /* Instance of the TimeService, DigitalWatchUI, DigitalWatchController
-     for handling time operations, manage watch UI and Controller
-  */
+     for handling time operations, manage watch UI and Controller */
   protected timeService     : TimeService;
   protected watchUI         : DigitalWatchUI;
   protected watchController : DigitalWatchController;
@@ -26,7 +25,7 @@ class Watch {
 
   constructor(scale_coefficiants : number[],
               trans_coefficiants : number[],
-              rot_coefficiant : number){
+              rot_coefficiant : number) {
     this.scaleMatrix = Matrix.buildScaleMatrix(scale_coefficiants);
     this.transMatrix = Matrix.buildTransMatrix(trans_coefficiants);
     this.rotMatrix   = Matrix.buildRotMatrix(rot_coefficiant);
@@ -63,6 +62,8 @@ export class DigitalWatch extends Watch {
     this.watchUI         = new DigitalWatchUI(watchElement);
     this.watchController = new DigitalWatchController(watchElement);
 
+    /*use watchUI to update the watch transformation*/
+    this.watchUI.transform(scale_coefficiants, trans_coefficiants, rot_coefficiant);
 
     // Immediately display time and update every seconds
     this.displayTime();

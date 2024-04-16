@@ -1,5 +1,5 @@
 import { DigitalWatch } from './class/Component/Watch.ts'
-import { WatchFactory } from './class/Component/WatchFactory.ts'
+import { DigitalWatchFactory } from './class/Component/WatchFactory.ts'
 
 //array that will contain digital watch
 let digital_watch_container : DigitalWatch[] = [];
@@ -8,7 +8,8 @@ let digital_watch_container : DigitalWatch[] = [];
 //Create a digital watch each time a click is submitted on the 'addWatchButton'.
 document.addEventListener("DOMContentLoaded", () => {
     const addWatchButton = document.getElementById('addWatchButton') as HTMLButtonElement;
-    addWatchButton?.addEventListener('click', () => {      
-      digital_watch_container.push(WatchFactory.createDigitalWatch());
+    addWatchButton?.addEventListener('click', () => {
+      //digital_watch_container.push(DigitalWatchFactory.createDigitalWatch());
+      digital_watch_container.push(DigitalWatchFactory.createRandomDigitalWatch());
     });
 });
