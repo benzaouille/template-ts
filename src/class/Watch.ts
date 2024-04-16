@@ -2,7 +2,7 @@ import { TimeService } from './TimeService.ts';
 import { DigitalWatchUI } from './WatchUI.ts';
 import { DigitalWatchController } from './WatchController.ts';
 
-export class Watch {
+class Watch {
   protected intervalId : number;
 
   // Instance of the TimeService for handling time operations

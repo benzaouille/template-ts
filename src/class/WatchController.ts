@@ -1,4 +1,6 @@
-export class DigitalWatchController {
+class WatchController {}
+
+export class DigitalWatchController extends WatchController{
 
   //watch button
   private modeButton     : HTMLElement;
@@ -8,6 +10,7 @@ export class DigitalWatchController {
   private am_pm_Button   : HTMLElement;
 
   constructor(watchElement: HTMLElement) {
+    super();
     this.modeButton     = watchElement.querySelector('.button-mode')!;
     this.increaseButton = watchElement.querySelector('.button-increase')!;
     this.lightButton    = watchElement.querySelector('.button-light')!;
