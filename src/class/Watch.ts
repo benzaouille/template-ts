@@ -8,15 +8,19 @@ enum EditMode {
     Minute
 }
 
+// Watch Base class : implement this class if you want to create any other kind of watch
 class Watch {
   protected intervalId : number;
 
-  // Instance of the TimeService for handling time operations
+  /* Instance of the TimeService, DigitalWatchUI, DigitalWatchController
+     for handling time operations, manage watch UI and Controller
+  */
   protected timeService     : TimeService;
   protected watchUI         : DigitalWatchUI;
   protected watchController : DigitalWatchController;
 }
 
+// Digital watch implementation
 export class DigitalWatch extends Watch {
   private light_on    : boolean = false;
   private am_pm_flag  : boolean = false;
@@ -37,7 +41,7 @@ export class DigitalWatch extends Watch {
     super();
     this.selectedZone  = selectedZone;
 
-    // Initialize the TimeService
+    // Initialize the TimeService, DigitalWatchUI and DigitalWatchController.
     this.timeService     = new TimeService();
     this.watchUI         = new DigitalWatchUI(watchElement);
     this.watchController = new DigitalWatchController(watchElement);
@@ -57,6 +61,7 @@ export class DigitalWatch extends Watch {
     this.watchController.getAmPmButton().addEventListener('click',     () => this.setPmAm()           );
   }
 
+  /*This function will update the digital watch using timeService and watchUI*/
   private displayTime() : void {
     let now = new Date();
     now = this.timeService.adjustDateToGMT(now.getTime(), now.getTimezoneOffset(), this.selectedZone);
@@ -70,6 +75,7 @@ export class DigitalWatch extends Watch {
     this.watchUI.updateDisplay(hours, minutes, seconds);
   }
 
+  /*we set editMode baased on it value*/
   private setMode(): void {
     switch (this.editMode) {
       case EditMode.None:
@@ -108,6 +114,7 @@ export class DigitalWatch extends Watch {
     }
   }
 
+  /*we set am_pm_flag to am or pm based on its current value*/
   private setPmAm() : void {
     this.am_pm_flag = !this.am_pm_flag;
   }
