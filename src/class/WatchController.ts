@@ -1,6 +1,4 @@
-import { SWatch } from './Watch.ts';
-
-export class WatchController {
+export class DigitalWatchController {
 
   //watch button
   private modeButton     : HTMLElement;

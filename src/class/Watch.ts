@@ -1,17 +1,17 @@
 import { TimeService } from './TimeService.ts';
-import { WatchUI } from './WatchUI.ts';
-import { WatchController } from './WatchController.ts';
+import { DigitalWatchUI } from './WatchUI.ts';
+import { DigitalWatchController } from './WatchController.ts';
 
-export class SWatch {
+export class Watch {
   protected intervalId : number;
 
   // Instance of the TimeService for handling time operations
   protected timeService     : TimeService;
-  protected watchUI         : WatchUI;
-  protected watchController : WatchController;
+  protected watchUI         : DigitalWatchUI;
+  protected watchController : DigitalWatchController;
 }
 
-export class Watch extends SWatch {
+export class DigitalWatch extends Watch {
   private light_on    : boolean;
   private edit_hour   : boolean;
   private edit_minute : boolean;
@@ -26,17 +26,14 @@ export class Watch extends SWatch {
 
 
   constructor(watchElement : HTMLElement,
-              selectedZone : number,
-              mod_hour     : number = 24,
-              mod_minute   : number = 60)
+              selectedZone : number)
   {
     super();
-
     this.offset_hour   = 0;
     this.offset_minute = 0;
     this.offset_second = 0;
-    this.mod_hour      = mod_hour;
-    this.mod_minute    = mod_minute;
+    this.mod_hour      = 24;
+    this.mod_minute    = 60;
     this.selectedZone  = selectedZone;
 
     this.light_on    = false;
@@ -46,8 +43,8 @@ export class Watch extends SWatch {
 
     // Initialize the TimeService
     this.timeService     = new TimeService();
-    this.watchUI         = new WatchUI(watchElement);
-    this.watchController = new WatchController(watchElement);
+    this.watchUI         = new DigitalWatchUI(watchElement);
+    this.watchController = new DigitalWatchController(watchElement);
 
     // Immediately display time and update every seconds
     this.displayTime();

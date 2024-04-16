@@ -1,7 +1,7 @@
-import { Watch } from './Watch.ts'
+import { DigitalWatch } from './Watch.ts'
 
 export class WatchFactory {
-    static createWatch(): Watch {
+    static createWatch(): DigitalWatch {
       const selectElementGMT = document.getElementById('timezone-select')  as HTMLSelectElement;;
       const container    = document.getElementById('watches-container');
       const watchElement = document.createElement('div');
@@ -18,6 +18,6 @@ export class WatchFactory {
           <button class="button-watch button-am-pm"></button>
       `;
       container.appendChild(watchElement);
-      return new Watch(watchElement, parseInt(selectElementGMT.value, 10));
+      return new DigitalWatch(watchElement, parseInt(selectElementGMT.value, 10));
     }
 }

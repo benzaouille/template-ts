@@ -1,4 +1,4 @@
-export class WatchUI {
+export class DigitalWatchUI {
 
   //screen
   private watchScreen: HTMLElement;

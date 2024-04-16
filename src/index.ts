@@ -1,13 +1,13 @@
-import { Watch } from './class/Watch.ts'
+import { DigitalWatch } from './class/Watch.ts'
 import { WatchFactory } from './class/WatchFactory.ts'
 
-let watch_container : Watch[] = [];
+let digital_watch_container : DigitalWatch[] = [];
 
 
 
 document.addEventListener("DOMContentLoaded", () => {
     const addWatchButton = document.getElementById('addWatchButton') as HTMLButtonElement;
     addWatchButton?.addEventListener('click', () => {
-      watch_container.push(WatchFactory.createWatch());
+      digital_watch_container.push(WatchFactory.createWatch());
     });
 });
