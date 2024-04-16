@@ -1,5 +1,5 @@
-import { DigitalWatch } from './class/Watch.ts'
-import { WatchFactory } from './class/WatchFactory.ts'
+import { DigitalWatch } from './class/Component/Watch.ts'
+import { WatchFactory } from './class/Component/WatchFactory.ts'
 
 //array that will contain digital watch
 let digital_watch_container : DigitalWatch[] = [];
