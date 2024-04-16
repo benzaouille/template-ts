@@ -2,6 +2,12 @@ import { TimeService } from './TimeService.ts';
 import { DigitalWatchUI } from './WatchUI.ts';
 import { DigitalWatchController } from './WatchController.ts';
 
+enum EditMode {
+    None,
+    Hour,
+    Minute
+}
+
 class Watch {
   protected intervalId : number;
 
@@ -12,34 +18,24 @@ class Watch {
 }
 
 export class DigitalWatch extends Watch {
-  private light_on    : boolean;
-  private edit_hour   : boolean;
-  private edit_minute : boolean;
-  private am_pm_flag  : boolean;
+  private light_on    : boolean = false;
+  private am_pm_flag  : boolean = false;
 
-  private offset_hour   : number;
-  private offset_minute : number;
-  private offset_second : number;
-  private mod_hour      : number;
-  private mod_minute    : number;
-  private selectedZone  : number;
+  private offset_hour   : number = 0;
+  private offset_minute : number = 0;
+  private offset_second : number = 0;
+  private selectedZone  : number = 0;
+  private mod_hour      : number = 24;
+  private mod_minute    : number = 60;
+
+  private editMode: EditMode = EditMode.None;
 
 
   constructor(watchElement : HTMLElement,
               selectedZone : number)
   {
     super();
-    this.offset_hour   = 0;
-    this.offset_minute = 0;
-    this.offset_second = 0;
-    this.mod_hour      = 24;
-    this.mod_minute    = 60;
     this.selectedZone  = selectedZone;
-
-    this.light_on    = false;
-    this.edit_hour   = false;
-    this.edit_minute = false;
-    this.am_pm_flag  = false;
 
     // Initialize the TimeService
     this.timeService     = new TimeService();
@@ -74,27 +70,25 @@ export class DigitalWatch extends Watch {
     this.watchUI.updateDisplay(hours, minutes, seconds);
   }
 
-  private setMode() : void {
-    if(!this.edit_hour && !this.edit_minute){
-      this.edit_hour = true;
-    }
-    else if(this.edit_hour)
-    {
-      this.edit_hour = false;
-      this.edit_minute = true;
-    }
-    else if(this.edit_minute)
-    {
-      this.edit_hour = false;
-      this.edit_minute = false;
+  private setMode(): void {
+    switch (this.editMode) {
+      case EditMode.None:
+      this.editMode = EditMode.Hour;
+      break;
+      case EditMode.Hour:
+      this.editMode = EditMode.Minute;
+      break;
+      case EditMode.Minute:
+      this.editMode = EditMode.None;
+      break;
     }
   }
 
   private updateTime() : void {
-      if(this.edit_hour){
+      if(this.editMode === EditMode.Hour){
         this.offset_hour = this.offset_hour + 1;
       }
-      else if(this.edit_minute){
+      else if(this.editMode === EditMode.Minute){
         this.offset_minute = this.offset_minute + 1;
       }
   }
@@ -105,7 +99,7 @@ export class DigitalWatch extends Watch {
   }
 
   private resetWatch() : void {
-    if(this.edit_hour || this.edit_minute){
+    if(this.editMode === EditMode.Hour || this.editMode === EditMode.Minute){
       let now = new Date();
       now = this.timeService.adjustDateToGMT(now.getTime(), now.getTimezoneOffset(), this.selectedZone);
       this.offset_hour   = -now.getHours();
