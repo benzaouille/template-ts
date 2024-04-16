@@ -1,6 +1,7 @@
 import { TimeService } from './TimeService.ts';
 import { DigitalWatchUI } from './WatchUI.ts';
 import { DigitalWatchController } from './WatchController.ts';
+import { Matrix } from '../Math/Matrix.ts';
 
 enum EditMode {
     None,
@@ -18,6 +19,19 @@ class Watch {
   protected timeService     : TimeService;
   protected watchUI         : DigitalWatchUI;
   protected watchController : DigitalWatchController;
+
+  protected scaleMatrix : Matrix;
+  protected transMatrix : Matrix;
+  protected rotMatrix   : Matrix;
+
+  constructor(scale_coefficiants : number[],
+              trans_coefficiants : number[],
+              rot_coefficiant : number){
+    this.scaleMatrix = Matrix.buildScaleMatrix(scale_coefficiants);
+    this.transMatrix = Matrix.buildTransMatrix(trans_coefficiants);
+    this.rotMatrix   = Matrix.buildRotMatrix(rot_coefficiant);
+  }
+
 }
 
 // Digital watch implementation
@@ -36,15 +50,19 @@ export class DigitalWatch extends Watch {
 
 
   constructor(watchElement : HTMLElement,
-              selectedZone : number)
+              selectedZone : number,
+              scale_coefficiants : number[] = [1, 1],
+              trans_coefficiants : number[] = [0, 0],
+              rot_coefficiant : number = 0)
   {
-    super();
+    super(scale_coefficiants, trans_coefficiants, rot_coefficiant);
     this.selectedZone  = selectedZone;
 
     // Initialize the TimeService, DigitalWatchUI and DigitalWatchController.
     this.timeService     = new TimeService();
     this.watchUI         = new DigitalWatchUI(watchElement);
     this.watchController = new DigitalWatchController(watchElement);
+
 
     // Immediately display time and update every seconds
     this.displayTime();

@@ -84,6 +84,7 @@ export class Matrix {
 
     return a*(e*i - f*h) - b*(d*i - f*g) + c*(d*h - e*g);
   }
+
   // Function to calculate the inverse of a 3x3 matrix
   inverse(): Matrix {
     if (this.data.length !== 3 && this.data[0].length !== 3) throw new Error("Can Only inverse 3x3 Matrix");
@@ -107,4 +108,58 @@ export class Matrix {
 
     return new Matrix(adjugate);
   }
+
+  static identity(size: number): Matrix {
+    return new Matrix(Array.from({ length: size }, (_, i) => {
+      return Array.from({ length: size }, (__, j) => i === j ? 1 : 0);
+    }));
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////
+
+  /*I will buils those function only for the 3x3 case to handle the Homogeneous
+  Coordinates for the translation matrix*/
+
+  static buildScaleMatrix(scale_coefficiants : number[]) : Matrix{
+    if(scale_coefficiants.length !== 2){
+      throw new Error("buildScaleMatrix : arguments array must be size of 2");
+    }
+
+    let result = Matrix.identity(3);
+    result.set(0, 0, scale_coefficiants[0]);
+    result.set(1, 1, scale_coefficiants[1]);
+
+    return result;
+  }
+
+  /*This function will build a translation matrix*/
+  static buildTransMatrix(rotation_coefficiants : number[]) : Matrix{
+    if(rotation_coefficiants.length !== 2){
+      throw new Error("buildTransMatrix : arguments array must be size of 2");
+    }
+
+    let result = Matrix.identity(3);
+    result.set(0, 2, rotation_coefficiants[0]);
+    result.set(1, 2, rotation_coefficiants[1]);
+
+    return result;
+  }
+
+  /*This function will build a rotation matrix, args are given in deg*/
+  static buildRotMatrix(rotation_coefficiant : number) : Matrix {
+    let result = Matrix.identity(3);
+    let c = Math.cos(rotation_coefficiant);
+    let s = Math.sin(rotation_coefficiant);
+    result.set(0, 0,  c);
+    result.set(0, 1, -s);
+    result.set(1, 0,  s);
+    result.set(1, 1,  c);
+
+    return result;
+  }
+  //////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////
 }
