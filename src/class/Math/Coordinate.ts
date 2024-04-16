@@ -5,11 +5,19 @@ export class Coordinate {
         this.components = components;
     }
 
-    getComponent(index: number): number {
-        return this.components[index];
-    }
-
     toString(): string {
         return `(${this.components.join(", ")})`;
+    }
+
+    // get index of component
+    getComponentAtIndex(index: number): number {
+      if(index >= this.components.length){
+        throw new Error("getComponent : index >= this.components.length");
+      }
+      return this.components[index];
+    }
+
+    getComponents() : number[] {
+      return this.components;
     }
 }
