@@ -23,6 +23,10 @@ export class DigitalWatchFactory {
   static createDigitalWatch(): DigitalWatch {
     const selectElementGMT = document.getElementById('timezone-select')  as HTMLSelectElement;;
     const container    = document.getElementById('watches-container');
+
+    if (!selectElementGMT) throw new Error("Failed to find the timezone-select Id element within the DOM.");
+    if (!container)        throw new Error("Failed to find the watches-container Id within the DOM.");
+
     const watchElement = DigitalWatchFactory.createWatchElement();
 
     container.appendChild(watchElement);
@@ -32,6 +36,10 @@ export class DigitalWatchFactory {
   static createRandomDigitalWatch(): DigitalWatch {
     const selectElementGMT = document.getElementById('timezone-select')  as HTMLSelectElement;;
     const container    = document.getElementById('watches-container');
+    
+    if (!selectElementGMT) throw new Error("Failed to find the timezone-select Id element within the DOM.");
+    if (!container)        throw new Error("Failed to find the watches-container Id within the DOM.");
+
     const watchElement = DigitalWatchFactory.createWatchElement();
 
     container.appendChild(watchElement);

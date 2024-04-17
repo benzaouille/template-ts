@@ -16,6 +16,8 @@ export class DigitalWatchController extends WatchController{
     this.lightButton    = watchElement.querySelector('.button-light')!;
     this.resetButton    = watchElement.querySelector('.button-reset')!;
     this.am_pm_Button   = watchElement.querySelector('.button-am-pm')!;
+
+    
   }
 
   getModeButton()     : HTMLElement { return this.modeButton;     }

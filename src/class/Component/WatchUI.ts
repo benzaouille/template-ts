@@ -14,6 +14,12 @@ export class DigitalWatchUI extends WatchUI {
     this.timeScreen = watchElement.querySelector('.time')!;
     this.secondsScreen = watchElement.querySelector('.seconds')!;
     this.watch_id = watchElement.querySelectorAll('.button-watch')!;
+
+    if (!this.watchScreen)   throw new Error("Failed to find the .watch-screen element within the provided watchElement.");
+    if (!this.timeScreen)    throw new Error("Failed to find the .time element within the provided watchElement.");
+    if (!this.secondsScreen) throw new Error("Failed to find the .seconds element within the provided watchElement.");
+    if (!this.watch_id) throw new Error("Failed to find the ..button-watch element within the provided watchElement.");
+
   }
 
   public updateDisplay(hours: number, minutes: number, seconds: number): void {
