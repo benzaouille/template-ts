@@ -47,7 +47,7 @@ export class DigitalWatchFactory {
 
     /*create random position, rotation and scaling*/;
     let scale_coefficiants = [Math.random()*2, Math.random()*2];
-    let trans_coefficiants = [Math.random()*100, Math.random()*100];
+    let trans_coefficiants = [(Math.random()*2 - 1)*100, (Math.random()*2 -1)*100];
     let rot_coefficiant    = Math.random()*360
     return new DigitalWatch(watchElement, parseInt(selectElementGMT.value, 10),
                             scale_coefficiants, trans_coefficiants, rot_coefficiant);
