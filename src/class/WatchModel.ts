@@ -72,7 +72,6 @@ export class WatchModel {
   }
 
   public getOffsetHour() : number {
-    console.log(this.offset_hour);
     return this.offset_hour;
   }
 

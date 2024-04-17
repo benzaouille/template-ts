@@ -15,11 +15,11 @@ export class WatchFactory {
               <span class="time"></span>
               <span class="seconds"></span>
           </span>
-          <button class="button-watch button-mode"></button>
-          <button class="button-watch button-increase"></button>
-          <button class="button-watch button-light"></button>
-          <button class="button-watch button-reset"></button>
-          <button class="button-watch button-am-pm"></button>
+          <button class="button-watch button-mode">m</button>
+          <button class="button-watch button-increase">i</button>
+          <button class="button-watch button-light">l</button>
+          <button class="button-watch button-reset">r</button>
+          <button class="button-watch button-am-pm">ap</button>
       `;
       container.appendChild(watchElement);
       return new DigitalWatch(watchElement, parseInt(selectElementGMT.value, 10));
