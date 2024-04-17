@@ -49,7 +49,6 @@ export class DigitalWatch extends Watch {
     // Immediately display time and update every seconds
     this.displayTime();
     this.intervalId = window.setInterval(() => this.displayTime(), 1000);
-
     this.setupEventListeners();
   }
 
