@@ -40,9 +40,9 @@ export class DigitalWatchUI extends WatchUI {
   public transform(scale_coefficiants : number[],
                   trans_coefficiants : number[],
                   rot_coefficiant : number): void {
-    this.addTransform(`scale(${scale_coefficiants[0]}, ${scale_coefficiants[1]})`);
-    this.addTransform(`rotate(${rot_coefficiant})`);
-
+    this.addTransform(`scale(${scale_coefficiants[0]}, ${scale_coefficiants[1]})
+                       translate(${trans_coefficiants[0]}%, ${trans_coefficiants[1]}%)
+                       rotate(${rot_coefficiant}deg) `);
   }
 
   private addTransform(newTransform : string) : void {
