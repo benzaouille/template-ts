@@ -6,14 +6,14 @@ export class DigitalWatchUI extends WatchUI {
   private watchScreen: HTMLElement;
   private timeScreen: HTMLElement;
   private secondsScreen: HTMLElement;
-  private watch_id : HTMLElement;
+  private watch_id : NodeListOf<Element>;
 
   constructor(watchElement: HTMLElement) {
     super();
     this.watchScreen = watchElement.querySelector('.watch-screen')!;
     this.timeScreen = watchElement.querySelector('.time')!;
     this.secondsScreen = watchElement.querySelector('.seconds')!;
-    this.watch_id = watchElement.querySelector('.watch-id')!;
+    this.watch_id = watchElement.querySelectorAll('.button-watch')!;
   }
 
   public updateDisplay(hours: number, minutes: number, seconds: number): void {
@@ -31,6 +31,18 @@ export class DigitalWatchUI extends WatchUI {
   public transform(scale_coefficiants : number[],
                   trans_coefficiants : number[],
                   rot_coefficiant : number): void {
-    //this.watch_id.style.transform = 'scale(1.5)';//`scale(${scale_coefficiants[0]}, ${scale_coefficiants[1]}) rotate(${scale_coefficiants}deg) translate(${trans_coefficiants[0]}, ${trans_coefficiants[1]})`;
+    this.addTransform(this.watch_id, `scale(${scale_coefficiants[0]}, ${scale_coefficiants[1]})`);
+  }
+
+  private addTransform(elements : NodeListOf<Element>, newTransform : string) : void {
+    /*Array.from(elements).forEach(element => {
+      const currentTransform = window.getComputedStyle(element).transform;
+      if (currentTransform && currentTransform !== 'none') {
+        element.style.transform =  currentTransform + ' ' + newTransform;
+      }
+      else {
+        window.getComputedStyle(element).setProperty("transform", newTransform);
+      }
+    });*/
   }
 }

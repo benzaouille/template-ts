@@ -26,25 +26,44 @@ body {
     align-items: center;
     flex: 1;
 }
+
+
 .watch {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    background-color: #007bff;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  --circle-size: 200px; /* Define circle size as a variable */
+  --radius: calc(var(--circle-size) / 2 - 15px); /* Adjust the radius for button size */
+  width: var(--circle-size);
+  height: var(--circle-size);
+  border-radius: 50%;
+  position: relative;
+  background-color: #007bff;
 }
 
 .watch-screen {
-    background-color: white;
-    border-radius: 20px;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
+  position: absolute;
+  top: 50%;  /* Position halfway down the parent */
+  left: 50%; /* Position halfway across the parent */
+  transform: translate(-50%, -50%); /* Shifts the element back by half its own width and height */
+  width: 70%;  /* Adjust the width as needed */
+  height: 30%; /* Adjust the height as needed */
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Vertical alignment to the center */
 }
+
+
+.button-watch {
+    width: 30px;
+    height: 10px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    /* Use the updated radius variable in the calculations */
+    transform: translate(-50%, -50%) translate(calc(var(--radius) * cos(var(--angle))), calc(var(--radius) * sin(var(--angle))));
+}
+
 
 .time {
     font-size: 2em;
@@ -53,41 +72,6 @@ body {
 
 .seconds {
     font-size: 1em;
-}
-
-.button-watch {
-    position: absolute;
-    width: 30px;
-    height: 10px;
-    background-color: cyan;
-}
-
-.button-mode {
-    transform: translateX(70px)
-               translateY(-70px)
-               rotate(45deg);
-}
-
-.button-increase {
-  transform: translateX(70px)
-             translateY(70px)
-             rotate(-45deg);
-}
-
-.button-light {
-  transform: translateX(-70px)
-             translateY(70px)
-             rotate(45deg);
-}
-
-.button-reset {
-  transform: translateX(-70px)
-             translateY(-70px)
-             rotate(-45deg);
-}
-
-.button-am-pm {
-  transform: translateY(-100px)
 }
 
 .footer{

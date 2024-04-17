@@ -10,11 +10,11 @@ export class DigitalWatchFactory {
     <span class="time"></span>
     <span class="seconds"></span>
     </span>
-    <button class="button-watch button-mode"></button>
-    <button class="button-watch button-increase"></button>
-    <button class="button-watch button-light"></button>
-    <button class="button-watch button-reset"></button>
-    <button class="button-watch button-am-pm"></button>
+    <button class="button-watch button-mode" style="--angle:-45deg;"></button>
+    <button class="button-watch button-increase" style="--angle:45deg;"></button>
+    <button class="button-watch button-light" style="--angle:135deg;"></button>
+    <button class="button-watch button-reset" style="--angle:225deg;"></button>
+    <button class="button-watch button-am-pm" style="--angle:-90deg;"></button>
     `;
 
     return watchElement;
