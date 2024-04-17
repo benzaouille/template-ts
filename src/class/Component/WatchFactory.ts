@@ -5,6 +5,7 @@ export class DigitalWatchFactory {
   static createWatchElement() : HTMLElement{
     const watchElement = document.createElement('div');
     watchElement.className = 'watch';
+    watchElement.id = 'watchId'
     watchElement.innerHTML = `
     <span class="watch-screen">
     <span class="time"></span>
@@ -36,7 +37,7 @@ export class DigitalWatchFactory {
   static createRandomDigitalWatch(): DigitalWatch {
     const selectElementGMT = document.getElementById('timezone-select')  as HTMLSelectElement;;
     const container    = document.getElementById('watches-container');
-    
+
     if (!selectElementGMT) throw new Error("Failed to find the timezone-select Id element within the DOM.");
     if (!container)        throw new Error("Failed to find the watches-container Id within the DOM.");
 
